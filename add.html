@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="sv">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="css/styles.css">
+        <script src="/functions.js"></script>
+        <title>Add Menu item</title>
+    </head>
+    <body>
+        <div id="cont">
+            <header>
+                <nav>
+                    <ul id="navul">
+                        <li><a href="admin.html">Admin</a></li>
+                        <li class="active"><a href="add.html">Add New</a></li>
+                    </ul>
+                </nav>
+            </header>
+
+            <main id="add">
+                <h1>Add Menu item</h1>
+                <div id="formmessage">
+                    
+                </div>
+                
+                <form id="addform" method="post">
+            
+                    <label for="name">Item name:</label><br>
+                    <input type="text" id="name" name="name"><br>
+
+                    <label for="type">Item Type:</label><br>
+                    <input type="text" id="type" name="type" value=""><br>
+
+                    <label for="description">Description:</label><br>
+                    <input type="text" id="description" name="description" value=""><br>
+
+                    <label for="prize">Prize:</label><br>
+                    <input type="text" id="prize" name="prize" value=""><br>
+                    
+                    <input class="addbtn" type="button" onclick="submitform()" value="Add Item">
+                </form>
+                <script type="text/javascript">
+                    //redirects window if not valid token
+                    if (!window.sessionStorage.getItem("token"))
+                    {
+                        window.location.replace("login.html");
+                    }
+                    async function submitform(){
+                        let name = document.getElementById("name").value;
+                        let type = document.getElementById("type").value;
+                        let description = document.getElementById("description").value;
+                        let prize = document.getElementById("prize").value;
+                       //skickar values får tillbaka result 
+                        let result = await createMenuItem(name, type, description, prize);
+                        //om svaret ör ett felmeddelande så blir meddelandet dåligt annars bra
+                        
+                        if(result.errors) {
+                            
+                            document.getElementById("formmessage").innerText = "All fields needs to be filled in";
+                            document.getElementById("formmessage").className = 'bad';
+                            
+                            if(result.errors.prize.valueType == "number") { 
+                                console.log("ok");
+                            }else{
+                                document.getElementById("formmessage").innerText = "Prize needs to be a number";
+                                document.getElementById("formmessage").className = 'bad';
+                                return;
+                            }
+                            return;
+                        }
+                        
+
+
+                        document.getElementById("formmessage").innerText = "The Item has been added";
+                        document.getElementById("formmessage").className = 'good';
+      
+                        document.getElementById("name").value ="";
+                        document.getElementById("type").value ="";
+                        document.getElementById("description").value ="";
+                        document.getElementById("prize").value ="";
+                       }
+
+                </script>
+            </main>
+        </div>
+    </body>
+</html>

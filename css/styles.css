@@ -1,0 +1,173 @@
+/*Allmänt*/
+body{
+    background-color: grey;
+    font-size: 2em;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    line-height: 1.5em;
+}
+main {
+    background-color: white;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.5);
+    padding: 3rem 5rem;
+}
+h1{
+    font-size: 2em;
+}
+h2{
+    font-size: 1em;
+}
+#cont {
+    display: block;
+    max-width: 1400px; 
+    margin-left: auto;
+    margin-right: auto;
+}
+.bad{
+    font-weight: 800;
+    background-color: darkred;
+    color: white;
+}
+.good{
+    font-weight: 800;
+    background-color: darkgreen;
+    color: white;
+}
+
+/*Nav-bar*/
+.menunav {
+    background-color: rgb(226, 223, 223);
+}
+.menunav ul {
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+.menunav ul li {
+    width: 115px;
+    list-style: none;
+    text-align: center;
+    cursor: pointer;
+    padding: 15px 17px; 
+}
+.menunav ul li:hover {
+    background-color: #c6d8cb;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.5);
+}
+.menunav ul li.active {
+    background-color: #b1cfb9;
+}
+/*Allmänt nav och ul*/
+.menunav a {
+    text-decoration: none;
+    min-width: 100px;
+    display: block;
+    color: black;
+}
+ul{
+    padding-left: 0;
+}
+/*edit och del links*/
+.clinks{
+    text-decoration: underline;
+    color: blue;
+    cursor: pointer;
+}
+/*Nav crumbs*/
+nav ol{
+    display: flex;
+    background-color: white;
+}
+nav ol li{
+    list-style: none;
+    margin-right: 20px;
+    font-size: 25px;
+}
+nav ol li a{
+    text-decoration: underline;
+}
+/*Menucont*/
+.menucont{
+    background-color: grey;
+}
+/*List*/
+#index ul li {
+    list-style: none;
+}
+#index ul {
+    border-bottom: 1px solid black;
+}
+#index ul ul {
+    display: flex;
+    font-size: 25px;
+}
+#index ul ul li{
+    margin-right: 30px;
+    margin-top: 10px;
+}
+.companynameli{
+    font-weight: 600;  
+}
+.cursive{
+    font-style: italic;
+}
+
+/*forms*/
+input{
+    width: 100%;
+    padding: 15px;
+    margin-bottom: 20px;
+    font-size: 25px;
+}
+.addbtn, .editbtn{
+    width: 250px;
+    margin-top: 30px;
+    font-size: 2rem;  
+}
+.error{
+    color: white;
+    background-color: darkred;
+}
+.message{
+    color: white;
+    background-color: darkgreen;
+}
+
+@media only screen and (max-width: 700px) {
+    h1{
+        font-size: 1.4em;
+    }
+    h2{
+        font-size: 0.8em;
+    }
+    p{
+        font-size: 0.7em;
+    }
+    #index {
+        padding: 0.5rem 1rem;
+    }
+    #add, #edit{
+        padding-right: 3rem;
+        padding-left: 0.5rem;
+    }
+    .course{
+        font-size: 0.6em;
+    }
+    .cLinks ul{
+        font-size: 1em;
+    }
+    body{
+        line-height: 1em;
+    }
+    .cHead{
+        min-width: 130px;
+    }
+}
+@media only screen and (max-width: 410px) {
+    nav ul li {
+        width: 100px;
+        padding: 5px 5px; 
+    }
+    h1{
+        font-size: 1.1em;
+    }
+}

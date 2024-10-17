@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="sv">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="/css/styles.css">
+        <script src="/functions.js"></script>
+        <title>Edit Menu</title>
+    </head>
+
+    <body>
+        <div id="cont">
+            <header>
+                <nav>
+                    <ul id="navul">
+                        <li class="active"><a href="admin.html">Admin</a></li>
+                        <li><a href="add.html">Add New</a></li>
+                    </ul>
+                </nav>
+            </header>
+
+            <main id="edit">
+                <nav>
+                    <ol>
+                        <li><a href="admin.html">Admin</a></li>
+                        <li>></li>
+                        <li><a>Edit Menu item</a></li>
+                    </ol>
+                </nav>
+                <h1>Edit Menu Item</h1>
+                
+                <div id="formmessage">
+                    
+                </div>
+
+                <form method="put">
+                       <!--FIX ME
+                    if(error != ""){ 
+                        <p class="error"><></p>
+                    };
+                     if(message != ""){ %>
+                        <p class="message">< message ></p>
+                     }; -->
+                    
+                     <label for="name">Item name:</label><br>
+                     <input type="text" id="name" name="name"><br>
+ 
+                     <label for="type">Item Type:</label><br>
+                     <input type="text" id="type" name="type" value=""><br>
+ 
+                     <label for="description">Description:</label><br>
+                     <input type="text" id="description" name="description" value=""><br>
+ 
+                     <label for="prize">Prize:</label><br>
+                     <input type="text" id="prize" name="prize" value=""><br>
+                     
+                     <input class="addbtn" type="button" onclick="submitform()" value="Edit Item">
+                </form>
+                <script type="text/javascript">
+                    //redirects window if not valid token
+                    if (!window.sessionStorage.getItem("token"))
+                    {
+                        window.location.replace("login.html");
+                    }
+
+                    getValues();
+                    async function getValues(){
+                        const queryString = window.location.search;
+                        const getParams = new URLSearchParams(queryString);
+                        const id = getParams.get('id');
+                        let menuItem = await getMenuItem(id);
+                        let name = menuItem.name;
+                        let type = menuItem.type;
+                        let description = menuItem.description;
+                        let prize = menuItem.prize;
+                        
+                        document.getElementById("name").value = name;
+                        document.getElementById("type").value =type;
+                        document.getElementById("description").value =description;
+                        document.getElementById("prize").value =prize;
+                        
+                    }
+                    
+                        async function submitform(){
+
+                        const queryString = window.location.search;
+                        const getParams = new URLSearchParams(queryString);
+                        const id = getParams.get('id');
+                        let name = document.getElementById("name").value;
+                        let type = document.getElementById("type").value;
+                        let description = document.getElementById("description").value;
+                        let prize = document.getElementById("prize").value;
+                        
+                       //skickar values får tillbaka result 
+
+                        let result = await changeMenuItem(id, name, type, description, prize);
+
+                        if (result.errors) { 
+                            document.getElementById("formmessage").innerText = "All fields needs to be filled in";
+                            document.getElementById("formmessage").className = 'bad';
+                            return;
+                        }
+
+                        document.getElementById("formmessage").innerText = "The Item has been edited";
+                        document.getElementById("formmessage").className = 'good';
+
+                        document.getElementById("name").value ="";
+                        document.getElementById("type").value ="";
+                        document.getElementById("description").value ="";
+                        document.getElementById("prize").value ="";
+                    }
+                </script>
+            </main>
+        </div>
+    </body>
+</html>

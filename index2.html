@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="sv">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="css/styles.css">
+        <script src="/functions.js"></script>
+        <title>Pizzeria Mariano</title>
+    </head>
+
+    <body>
+        <div id="cont">
+            <header>
+                <nav>
+                    <ul id="navul">
+                        <li class="active"><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                    </ul>
+                </nav>
+            </header>
+            <main id="index">
+                <h1>Pizzeria Mariano</h1>
+                <div id="menulist"></div>
+                <script>
+
+                    list();
+
+                    //checks if user is logged in
+                    if (window.sessionStorage.getItem("token")){
+                    
+                    //if valid token, changes nav menu
+                    let navul = document.getElementById("navul");
+                    let adminli = document.createElement('li');
+                    adminli.innerHTML = '<a href="admin.html">Admin</a>';
+                    navul.appendChild(adminli);
+                }else{
+                    //changes menu if not logged in
+                    let navul = document.getElementById("navul");
+                    let loginli = document.createElement('li');
+                    loginli.innerHTML = '<a href="login.html">Login</a>';
+                    navul.appendChild(loginli);
+                }
+
+                    async function list(){
+                    let data = await getData();
+                    let ulList = document.createElement('ul');
+
+                    if(data.length >0) { 
+                        data.forEach((row) => {
+                            let nameli = document.createElement('li');
+                            nameli.classList.add("nameli");
+                            nameli.innerText = row.name;            
+                            ulList.appendChild(nameli);
+                            
+                            let typeli = document.createElement('li');
+                            typeli.innerText = row.type;            
+                            ulList.appendChild(typeli);
+
+                            let descriptionli = document.createElement('li');
+                            descriptionli.innerText = "From: " + row.description;            
+                            descriptionli.classList.add("cursive");
+                            ulList.appendChild(descriptionli);                   
+
+                            let prizeli = document.createElement('li');
+                            prizeli.innerText = "To: " + row.prize;            
+                            prizeli.classList.add("cursive");
+                            ulList.appendChild(prizeli); 
+
+                        })
+                    }
+                    let menulist = document.getElementById('menulist');
+                    menulist.appendChild(ulList);
+                };
+                </script>
+            </main>
+        </div>
+        
+    </body>
+</html>
+

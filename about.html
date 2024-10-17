@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="sv">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="css/styles.css">
+        <title>Om</title>
+    </head>
+
+    <body>
+        <div id="cont">
+            <header>
+                <nav>
+                    <ul id="navul">
+                        <li><a href="index.html">Home</a></li>
+                        <li class="active"><a href="about.html">About</a></li>
+                </nav>
+            </header>
+            <main id="index">
+                
+                <h1>Om</h1>
+                
+                <h2>Webbplatsens syfte och upplägg</h2>
+                
+                <p> 
+                    Jag ska med denna webbplatsen visa en webbplats och en webbtjänst. Webbplatsen ska kommunisera med webbtjänsten via Fetch API.
+                    <br>
+                    På index sidan finns alla arbetsplatser listade. Där kan man radera och ändra arbetsplatser. Väljer man att ändra skickas man till en sida där arbetsplatsens information är inlagd i förväg. 
+                    <br>
+                    På sidan som heter new kan man lägga till nya arbetsplatser
+                    <br> 
+                    Både sidan för att ändra och för att skapa ny arbetsplats får man varning om man inte fyller i informationen korrekt 
+                </p>
+                
+                <h2>Uppgiften och jag</h2>
+                
+                <p>
+                    Jag har använt mig av sqlite3 för att skapa databasen. Jag tycker denna var väldigt lik 1a uppgiften men gick mer in på djupet och jag lärde mig en hel del 
+                </p>       
+                <script>
+                       //checks if user is logged in
+                       if (window.sessionStorage.getItem("token")){
+                    
+                        //if valid token, changes nav menu
+        
+                        let navul = document.getElementById("navul");
+                        let adminli = document.createElement('li');
+                        adminli.innerHTML = '<a href="admin.html">Admin</a>';
+                        navul.appendChild(adminli);
+                    }else{
+                        //changes menu if not logged in
+                        let navul = document.getElementById("navul");
+                        let loginli = document.createElement('li');
+                        loginli.innerHTML = '<a href="login.html">Login</a>';
+                        navul.appendChild(loginli);
+                    }
+                </script>
+
+            </main>
+        </div>
+    </body>
+</html>

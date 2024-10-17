@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="sv">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="css/styles.css">
+        <script src="/functions.js"></script>
+        <title>Pizzeria Mariano</title>
+    </head>
+
+    <body>
+        <header>
+            <nav class="mainnav">
+                <ul class="navul">
+                    <li class="active"><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="login.html">Login</a></li>
+                </ul>
+            </nav>
+        </header>
+
+            <main id="index">
+                <h1>Pizzeria Mariano</h1>
+
+                <div class="menucont">
+
+                
+                    <nav class="menunav">
+                        <ul class ="navul">
+                            <li id="pizzali" class="active">Pizzas</li>
+                            <li id="drinkli">Drinks</li>
+                            <li id="dessertli">Desserts</li>
+                            <li id="othterli">Others</li>
+                        </ul>
+                    </nav>
+                
+                    <div id="menulist"></div>
+                </div>
+                <script>
+                    
+                    list();
+
+                    //checks if user is logged in and redirects
+                    if (window.sessionStorage.getItem("token")){
+                        window.location.replace("admin.html");
+                    }
+                    
+                    //creates a list of items
+                    async function list(){
+                        
+                        let ulList = document.createElement('ul');
+                        let active = document.getElementsByClassName("active");
+
+                        //decides what list to create
+                        if(active = item){
+                            var data = await getMenuCategory(item);   
+                        }
+                        
+                        if(data.length >0) { 
+                             data.forEach((row) => {
+                            let nameli = document.createElement('li');
+                            nameli.classList.add("nameli");
+                            nameli.innerText = row.name;            
+                            ulList.appendChild(nameli);
+                            
+                            let typeli = document.createElement('li');
+                            typeli.innerText = row.type;            
+                            ulList.appendChild(typeli);
+
+                            let descriptionli = document.createElement('li');
+                            descriptionli.innerText = "From: " + row.description;            
+                            descriptionli.classList.add("cursive");
+                            ulList.appendChild(descriptionli);                   
+
+                            let prizeli = document.createElement('li');
+                            prizeli.innerText = "To: " + row.prize;            
+                            prizeli.classList.add("cursive");
+                            ulList.appendChild(prizeli); 
+
+                        })
+                    }
+                    let menulist = document.getElementById('menulist');
+                    menulist.appendChild(ulList);
+                };
+                </script>
+                
+            </main>
+        </div>
+        
+    </body>
+</html>
+

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="sv">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="css/styles.css">
+        <script src="/functions.js"></script>
+        <title>Login</title>
+    </head>
+
+    <body>
+        <div id="cont">
+            <header>
+                <nav>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li class="active"><a href="login.html">Login</a></li>
+                    </ul>
+                </nav>
+            </header>
+            <main id="login">
+                <h1>Login</h1>
+                <div id="formmessage">
+                    
+                </div>
+                
+                <form id="loginform" method="post">
+            
+                    <label for="username">Username:</label><br>
+                    <input value="" type="text" id="username" name="username"><br>
+
+                    <label for="password">Password:</label><br>
+                    <input value="" type="text" id="password" name="password"><br>
+
+                    <input class="" type="button" onclick="submitform()" value="Login">
+                </form>
+
+                <p>Registrer for a new account <a href="registrer.html">HERE</a></p>
+                <script type="text/javascript">
+                    async function submitform(){
+                        let username = document.getElementById("username").value;
+                        let password = document.getElementById("password").value;
+                        
+                       //skickar values får tillbaka result 
+                        let result = await loginUser(username, password);
+                        
+                        //om svaret ör ett felmeddelande så blir meddelandet dåligt annars bra
+                        if (result.error) { 
+                            document.getElementById("formmessage").innerText = "Usename or password is incorrect";
+                            document.getElementById("formmessage").className = 'bad';
+                            return;
+                        }
+
+                        //redirects window if logged in
+                    if (window.sessionStorage.getItem("token"))
+                    {
+                        window.location.replace("admin.html");
+                    }
+                    }
+
+                </script>
+            </main>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="sv">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="css/styles.css">
+        <script src="/functions.js"></script>
+        <title>Menu</title>
+    </head>
+
+    <body>
+        <div id="cont">
+            <header>
+                <nav>
+                    <ul id="navul">
+                        <li class="active"><a href="admin.html">Admin</a></li>
+                        <li><a href="add.html">Add New</a></li>
+                    </ul>
+                </nav>
+            </header>
+            <main id="admin">
+                <h1>Burger Palace</h1>
+                <div id="menulist"></div>
+                <script>
+
+                    list();
+
+                    //checks if user is logged in
+                    if (!window.sessionStorage.getItem("token")){
+                    //redirects not logged in
+                        window.location.replace("login.html");
+                    }
+
+                    async function list(){
+                    let data = await getData();
+                    let ulList = document.createElement('ul');
+
+                    if(data.length >0) { 
+                        data.forEach((row) => {
+                            let nameli = document.createElement('li');
+                            nameli.classList.add("nameli");
+                            nameli.innerText = row.name;            
+                            ulList.appendChild(nameli);
+                            
+                            let typeli = document.createElement('li');
+                            typeli.innerText = row.type;            
+                            ulList.appendChild(typeli);
+
+                            let descriptionli = document.createElement('li');
+                            descriptionli.innerText = "From: " + row.description;            
+                            descriptionli.classList.add("cursive");
+                            ulList.appendChild(descriptionli);                   
+
+                            let prizeli = document.createElement('li');
+                            prizeli.innerText = "To: " + row.prize;            
+                            prizeli.classList.add("cursive");
+                            ulList.appendChild(prizeli); 
+
+                            let clinksli = document.createElement('li');
+                            ulList.appendChild(clinksli);
+                            let clinksul = document.createElement('ul');
+                            clinksli.appendChild(clinksul);
+
+                            let clinksdelli = document.createElement('li');
+                            clinksul.appendChild(clinksdelli);
+                            clinksdelli.innerText = 'Delete'; 
+                            clinksdelli.setAttribute("id", "del" + row._id);
+
+                            let dellink = document.getElementById(clinksdelli.id);
+                            clinksdelli.setAttribute("onclick", 'deleteMenuItem("' + row._id + '")');
+                            clinksdelli.classList.add("clinks");
+
+                            let clinkseditli = document.createElement('li');
+                            clinksul.appendChild(clinkseditli);
+                            clinkseditli.classList.add("clinks");
+                            clinkseditli.innerText = 'Edit'; 
+                            clinkseditli.setAttribute("id", "edit" + row._id);
+
+                            let editlink = document.getElementById(clinkseditli.id);
+                            clinkseditli.innerHTML = "<a href='edit.html?id=" + row._id + "'>Edit</a>";
+
+                        })
+                    }
+                    let menulist = document.getElementById('menulist');
+                    menulist.appendChild(ulList);
+                    };
+                </script>
+            </main>
+        </div>
+        
+    </body>
+</html>

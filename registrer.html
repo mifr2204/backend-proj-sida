@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="sv">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="css/styles.css">
+        <script src="/functions.js"></script>
+        <title>New user</title>
+    </head>
+
+    <body>
+        <div id="cont">
+            <header>
+                <nav>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li class="active"><a href="login.html">Login</a></li> 
+                    </ul>
+                </nav>
+            </header>
+            <main id="registrer">
+                <h1>Registrer</h1>
+                <div id="formmessage">
+                    
+                </div>
+                
+                <form id="registrerform" method="post">
+
+                    <label for="firstname">Firstname:</label><br>
+                    <input value="" type="text" id="firstname" name="firstname"><br>
+
+                    <label for="lastname">Lastname:</label><br>
+                    <input value="" type="text" id="lastname" name="lastname"><br>
+                    
+                    <label for="email">E-mail:</label><br>
+                    <input value="" type="email" id="email" name="email"><br>
+
+                    <label for="username">Username:</label><br>
+                    <input value="" type="text" id="username" name="username"><br>
+
+                    <label for="password">Password:</label><br>
+                    <input value="" type="text" id="password" name="password"><br>
+
+                    <input class="" type="button" onclick="submitform()" value="Create user">
+                </form>
+                <script type="text/javascript">
+
+                    //checks if user is logged in
+                    if (window.sessionStorage.getItem("token")){
+                    window.location.replace("admin.html");
+    
+                    }
+
+                    async function submitform(){
+                        let firstname = document.getElementById("firstname").value;
+                        let lastname = document.getElementById("lastname").value;
+                        let email = document.getElementById("email").value;
+                        let username = document.getElementById("username").value;
+                        let password = document.getElementById("password").value;
+                        
+                       //skickar values får tillbaka result 
+                        let result = await registrerUser(firstname, lastname, email, username, password);
+                        
+                        //om svaret ör ett felmeddelande så blir meddelandet dåligt annars bra
+                        if (result.error) { 
+                            document.getElementById("formmessage").innerText = result.error;
+                            document.getElementById("formmessage").className = 'bad';
+                            return;
+                        }
+
+                        document.getElementById("formmessage").innerText = result.message;
+                        document.getElementById("formmessage").className = 'good';
+    
+                        document.getElementById("firstname").value ="";
+                        document.getElementById("lastname").value ="";
+                        document.getElementById("email").value ="";
+                        document.getElementById("username").value ="";
+                        document.getElementById("password").value ="";
+                    }
+
+                </script>
+            </main>
+        </div>
+    </body>
+</html>
