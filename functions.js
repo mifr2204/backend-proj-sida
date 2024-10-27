@@ -69,6 +69,23 @@ async function getData() {
     
     return data;
 };
+//gets menu items by category
+async function getMenuItemsByCategory(category) {
+    let url = "http://127.0.0.1:3000/api/menu?category=" + category;
+    let token = window.sessionStorage.getItem("token");
+
+    console.log("token sent: " + token);
+    const response = await fetch(url, {
+
+        headers: {
+            "Authorization": "Bearer " + token
+        },
+    });
+    const data = await response.json();
+   
+    
+    return data;
+};
 
 //gets a specific menu item
 async function getMenuItem(id) {

@@ -12,7 +12,7 @@
         <header>
             <nav class="mainnav">
                 <ul class="navul">
-                    <li class="active"><a href="index.html">Home</a></li>
+                    <li class="activenav"><a href="index.html">Home</a></li>
                     <li><a href="about.html">About</a></li>
                     <li><a href="login.html">Login</a></li>
                 </ul>
@@ -26,62 +26,55 @@
 
                 
                     <nav class="menunav">
-                        <ul class ="navul">
-                            <li id="pizzali" class="active">Pizzas</li>
-                            <li id="drinkli">Drinks</li>
-                            <li id="dessertli">Desserts</li>
-                            <li id="othterli">Others</li>
+                        <ul class ="navul" id="navul">
+                            <li id="menuitem-pizza" onclick="changeMenu('pizza');">Pizzas</li>
+                            <li id="menuitem-drink" onclick="changeMenu('drink');">Drinks</li>
+                            <li id="menuitem-dessert" onclick="changeMenu('dessert');">Desserts</li>
+                            <li id="menuitem-other" onclick="changeMenu('other');">Others</li>
                         </ul>
                     </nav>
                 
                     <div id="menulist"></div>
                 </div>
-                <script>
+                <p id="Mlist">
+                </p>
+                <script type="text/javascript">
                     
-                    list();
+                        changeMenu('pizza');
+
+                    async function changeMenu(what) {
+                        let elMenuList = document.getElementById('navul');
+                        for (let i=0; i<elMenuList.childNodes.length; i++) {
+                            elMenuList.childNodes[i].className = '';
+                        }
+
+                        let elActiveMenuItem = document.getElementById('menuitem-' + what);
+                        elActiveMenuItem.className = 'active';
+
+                        let menuItems = await getMenuItemsByCategory(what);
+
+                        let MlistEl = document.getElementById('Mlist');
+                        MlistEl.innerHTML = '';
+                        for (let i=0;i<menuItems.length; i++) {
+                            let itemul = document.createElement('ul');
+                            let itemli1 = document.createElement('li');
+                            let itemli2 = document.createElement('li');
+                            
+                            itemli1.innerText = menuItems[i].name + ' - ' + menuItems[i].prize;
+                            itemli2.innerText = menuItems[i].description;
+                            MlistEl.appendChild(itemul);
+                            itemul.appendChild(itemli1);
+                            itemul.appendChild(itemli2);
+                        }
+                    };
+                    
 
                     //checks if user is logged in and redirects
                     if (window.sessionStorage.getItem("token")){
                         window.location.replace("admin.html");
                     }
                     
-                    //creates a list of items
-                    async function list(){
-                        
-                        let ulList = document.createElement('ul');
-                        let active = document.getElementsByClassName("active");
-
-                        //decides what list to create
-                        if(active = item){
-                            var data = await getMenuCategory(item);   
-                        }
-                        
-                        if(data.length >0) { 
-                             data.forEach((row) => {
-                            let nameli = document.createElement('li');
-                            nameli.classList.add("nameli");
-                            nameli.innerText = row.name;            
-                            ulList.appendChild(nameli);
-                            
-                            let typeli = document.createElement('li');
-                            typeli.innerText = row.type;            
-                            ulList.appendChild(typeli);
-
-                            let descriptionli = document.createElement('li');
-                            descriptionli.innerText = "From: " + row.description;            
-                            descriptionli.classList.add("cursive");
-                            ulList.appendChild(descriptionli);                   
-
-                            let prizeli = document.createElement('li');
-                            prizeli.innerText = "To: " + row.prize;            
-                            prizeli.classList.add("cursive");
-                            ulList.appendChild(prizeli); 
-
-                        })
-                    }
-                    let menulist = document.getElementById('menulist');
-                    menulist.appendChild(ulList);
-                };
+                
                 </script>
                 
             </main>
