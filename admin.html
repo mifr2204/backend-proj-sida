@@ -9,18 +9,40 @@
     </head>
 
     <body>
-        <div id="cont">
-            <header>
-                <nav>
+        <header>
+            <div class="container">
+                <nav class="mainnav">
                     <ul id="navul">
-                        <li class="active"><a href="admin.html">Admin</a></li>
+                        <li><a href="admin.html" class="active">Admin</a></li>
                         <li><a href="add.html">Add New</a></li>
+                        <li><span class="link" onclick="logout();">Logout</span></li>
                     </ul>
                 </nav>
-            </header>
-            <main id="admin">
-                <h1>Burger Palace</h1>
+            </div>
+        </header>
+
+
+        <main id="admin">
+            <div class="container">
+                <h1>Pizzeria Mariano</h1>
                 <div id="menulist"></div>
+            </div>
+        </main>
+            
+        <footer>
+            <div class="container">
+                <div class="flexbox center">
+                    <img src="/images/logo-dark.svg" alt="Mariano Logo" class="logo" />
+                    <div class="flex"></div>
+                    <a href="tel:0123456789"><img src="/images/icons/telephone.svg" alt="Telephone icon" class="icon" />0123-456789</a>
+                    <a href="http://www.facebook.com/"><img src="/images/icons/facebook.svg" alt="Facebook icon" class="icon" /></a>
+                    <a href="http://www.instagram.com/"><img src="/images/icons/instagram.svg" alt="Instagram icon" class="icon" /></a>
+                </div>
+            </div>
+        </footer>
+        
+
+
                 <script>
 
                     list();
@@ -33,60 +55,57 @@
 
                     async function list(){
                     let data = await getData();
-                    let ulList = document.createElement('ul');
 
                     if(data.length >0) { 
                         data.forEach((row) => {
+                            let ulList = document.createElement('ul');
+
                             let nameli = document.createElement('li');
                             nameli.classList.add("nameli");
-                            nameli.innerText = row.name;            
+                            nameli.innerText = "Name: " + row.name;            
                             ulList.appendChild(nameli);
                             
                             let typeli = document.createElement('li');
-                            typeli.innerText = row.type;            
+                            typeli.innerText = "Type: " + row.type;            
                             ulList.appendChild(typeli);
 
                             let descriptionli = document.createElement('li');
-                            descriptionli.innerText = "From: " + row.description;            
-                            descriptionli.classList.add("cursive");
+                            descriptionli.innerText = "Description: " + row.description;            
                             ulList.appendChild(descriptionli);                   
 
                             let prizeli = document.createElement('li');
-                            prizeli.innerText = "To: " + row.prize;            
-                            prizeli.classList.add("cursive");
+                            prizeli.innerText = "Cost: " + row.prize;            
                             ulList.appendChild(prizeli); 
 
                             let clinksli = document.createElement('li');
                             ulList.appendChild(clinksli);
-                            let clinksul = document.createElement('ul');
+                            let clinksul = document.createElement('div');
+                            clinksul.className = 'container-links';
                             clinksli.appendChild(clinksul);
 
-                            let clinksdelli = document.createElement('li');
+                            let clinksdelli = document.createElement('span');
                             clinksul.appendChild(clinksdelli);
                             clinksdelli.innerText = 'Delete'; 
                             clinksdelli.setAttribute("id", "del" + row._id);
+                            clinksdelli.className = "button warning";
 
                             let dellink = document.getElementById(clinksdelli.id);
                             clinksdelli.setAttribute("onclick", 'deleteMenuItem("' + row._id + '")');
-                            clinksdelli.classList.add("clinks");
 
-                            let clinkseditli = document.createElement('li');
+                            let clinkseditli = document.createElement('span');
                             clinksul.appendChild(clinkseditli);
-                            clinkseditli.classList.add("clinks");
                             clinkseditli.innerText = 'Edit'; 
                             clinkseditli.setAttribute("id", "edit" + row._id);
 
                             let editlink = document.getElementById(clinkseditli.id);
-                            clinkseditli.innerHTML = "<a href='edit.html?id=" + row._id + "'>Edit</a>";
+                            clinkseditli.innerHTML = "<a class='button flat' href='edit.html?id=" + row._id + "'>Edit</a>";
 
+                            let menulist = document.getElementById('menulist');
+                            menulist.appendChild(ulList);
                         })
                     }
-                    let menulist = document.getElementById('menulist');
-                    menulist.appendChild(ulList);
                     };
                 </script>
-            </main>
-        </div>
-        
+
     </body>
 </html>

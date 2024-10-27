@@ -8,21 +8,21 @@
         <title>Add Menu item</title>
     </head>
     <body>
-        <div id="cont">
-            <header>
-                <nav>
+        <header>
+            <div class="container">
+                <nav class="mainnav">
                     <ul id="navul">
                         <li><a href="admin.html">Admin</a></li>
-                        <li class="active"><a href="add.html">Add New</a></li>
+                        <li><a href="add.html" class="active">Add New</a></li>
+                        <li><span class="link" onclick="logout();">Logout</span></li>
                     </ul>
                 </nav>
-            </header>
+            </div>
+        </header>
 
+        <div class="container">
             <main id="add">
                 <h1>Add Menu item</h1>
-                <div id="formmessage">
-                    
-                </div>
                 
                 <form id="addform" method="post">
             
@@ -37,10 +37,15 @@
 
                     <label for="prize">Prize:</label><br>
                     <input type="text" id="prize" name="prize" value=""><br>
+
+                    <div id="formmessage">
+                    
+                    </div>
+    
                     
                     <input class="addbtn" type="button" onclick="submitform()" value="Add Item">
                 </form>
-                <script type="text/javascript">
+                <script>
                     //redirects window if not valid token
                     if (!window.sessionStorage.getItem("token"))
                     {
@@ -57,13 +62,13 @@
                         
                         if(result.errors) {
                             
-                            document.getElementById("formmessage").innerText = "All fields needs to be filled in";
+                            document.getElementById("formmessage").innerText = "Error: All fields needs to be filled in";
                             document.getElementById("formmessage").className = 'bad';
                             
                             if(result.errors.prize.valueType == "number") { 
                                 console.log("ok");
                             }else{
-                                document.getElementById("formmessage").innerText = "Prize needs to be a number";
+                                document.getElementById("formmessage").innerText = "Error: Prize needs to be a number";
                                 document.getElementById("formmessage").className = 'bad';
                                 return;
                             }
@@ -84,5 +89,19 @@
                 </script>
             </main>
         </div>
+
+
+        <footer>
+            <div class="container">
+                <div class="flexbox center">
+                    <img src="/images/logo-dark.svg" alt="Mariano Logo" class="logo" />
+                    <div class="flex"></div>
+                    <a href="tel:0123456789"><img src="/images/icons/telephone.svg" alt="Telephone icon" class="icon" />0123-456789</a>
+                    <a href="http://www.facebook.com/"><img src="/images/icons/facebook.svg" alt="Facebook icon" class="icon" /></a>
+                    <a href="http://www.instagram.com/"><img src="/images/icons/instagram.svg" alt="Instagram icon" class="icon" /></a>
+                </div>
+            </div>
+        </footer>
+
     </body>
 </html>

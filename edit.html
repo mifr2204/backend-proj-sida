@@ -9,31 +9,23 @@
     </head>
 
     <body>
-        <div id="cont">
-            <header>
-                <nav>
+        <header>
+            <div class="container">
+                <nav class="mainnav">
                     <ul id="navul">
-                        <li class="active"><a href="admin.html">Admin</a></li>
+                        <li><a href="admin.html">Admin</a></li>
                         <li><a href="add.html">Add New</a></li>
+                        <li><span class="link" onclick="logout();">Logout</span></li>
                     </ul>
                 </nav>
-            </header>
+            </div>
+        </header>
 
+        <div class="container">
             <main id="edit">
-                <nav>
-                    <ol>
-                        <li><a href="admin.html">Admin</a></li>
-                        <li>></li>
-                        <li><a>Edit Menu item</a></li>
-                    </ol>
-                </nav>
                 <h1>Edit Menu Item</h1>
                 
-                <div id="formmessage">
-                    
-                </div>
-
-                <form method="put">
+                <form>
                        <!--FIX ME
                     if(error != ""){ 
                         <p class="error"><></p>
@@ -54,9 +46,13 @@
                      <label for="prize">Prize:</label><br>
                      <input type="text" id="prize" name="prize" value=""><br>
                      
+                     <div id="formmessage">
+                    
+                     </div>
+
                      <input class="addbtn" type="button" onclick="submitform()" value="Edit Item">
                 </form>
-                <script type="text/javascript">
+                <script>
                     //redirects window if not valid token
                     if (!window.sessionStorage.getItem("token"))
                     {
@@ -96,7 +92,7 @@
                         let result = await changeMenuItem(id, name, type, description, prize);
 
                         if (result.errors) { 
-                            document.getElementById("formmessage").innerText = "All fields needs to be filled in";
+                            document.getElementById("formmessage").innerText = "Error: All fields needs to be filled in";
                             document.getElementById("formmessage").className = 'bad';
                             return;
                         }
@@ -112,5 +108,18 @@
                 </script>
             </main>
         </div>
+
+        <footer>
+            <div class="container">
+                <div class="flexbox center">
+                    <img src="/images/logo-dark.svg" alt="Mariano Logo" class="logo" />
+                    <div class="flex"></div>
+                    <a href="tel:0123456789"><img src="/images/icons/telephone.svg" alt="Telephone icon" class="icon" />0123-456789</a>
+                    <a href="http://www.facebook.com/"><img src="/images/icons/facebook.svg" alt="Facebook icon" class="icon" /></a>
+                    <a href="http://www.instagram.com/"><img src="/images/icons/instagram.svg" alt="Instagram icon" class="icon" /></a>
+                </div>
+            </div>
+        </footer>
+
     </body>
 </html>

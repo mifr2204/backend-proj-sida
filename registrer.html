@@ -9,78 +9,97 @@
     </head>
 
     <body>
-        <div id="cont">
-            <header>
-                <nav>
-                    <ul>
-                        <li><a href="index.html">Home</a></li>
+        <header>
+            <div class="container">
+                <nav class="mainnav">
+                    <ul class="navul">
+                        <li class="activenav"><a href="index.html">Home</a></li>
                         <li><a href="about.html">About</a></li>
-                        <li class="active"><a href="login.html">Login</a></li> 
+                        <li class="spacer"></li>
+                        <li><a href="login.html" class="active">Login</a></li>
                     </ul>
                 </nav>
-            </header>
+            </div>
+        </header>
+
             <main id="registrer">
-                <h1>Registrer</h1>
-                <div id="formmessage">
+                <div class="container">
+                    <h1>Registrer</h1>
                     
-                </div>
-                
-                <form id="registrerform" method="post">
+                    <form id="registrerform" method="post">
 
-                    <label for="firstname">Firstname:</label><br>
-                    <input value="" type="text" id="firstname" name="firstname"><br>
+                        <label for="firstname">Firstname:</label><br>
+                        <input value="" type="text" id="firstname" name="firstname"><br>
 
-                    <label for="lastname">Lastname:</label><br>
-                    <input value="" type="text" id="lastname" name="lastname"><br>
-                    
-                    <label for="email">E-mail:</label><br>
-                    <input value="" type="email" id="email" name="email"><br>
+                        <label for="lastname">Lastname:</label><br>
+                        <input value="" type="text" id="lastname" name="lastname"><br>
+                        
+                        <label for="email">E-mail:</label><br>
+                        <input value="" type="email" id="email" name="email"><br>
 
-                    <label for="username">Username:</label><br>
-                    <input value="" type="text" id="username" name="username"><br>
+                        <label for="username">Username:</label><br>
+                        <input value="" type="text" id="username" name="username"><br>
 
-                    <label for="password">Password:</label><br>
-                    <input value="" type="text" id="password" name="password"><br>
+                        <label for="password">Password:</label><br>
+                        <input value="" type="text" id="password" name="password"><br>
 
-                    <input class="" type="button" onclick="submitform()" value="Create user">
-                </form>
-                <script type="text/javascript">
-
-                    //checks if user is logged in
-                    if (window.sessionStorage.getItem("token")){
-                    window.location.replace("admin.html");
+                        <div id="formmessage">
+                        
+                        </div>
     
-                    }
+                        <input class="" type="button" onclick="submitform()" value="Create user">
+                    </form>
+                    <script>
 
-                    async function submitform(){
-                        let firstname = document.getElementById("firstname").value;
-                        let lastname = document.getElementById("lastname").value;
-                        let email = document.getElementById("email").value;
-                        let username = document.getElementById("username").value;
-                        let password = document.getElementById("password").value;
-                        
-                       //skickar values får tillbaka result 
-                        let result = await registrerUser(firstname, lastname, email, username, password);
-                        
-                        //om svaret ör ett felmeddelande så blir meddelandet dåligt annars bra
-                        if (result.error) { 
-                            document.getElementById("formmessage").innerText = result.error;
-                            document.getElementById("formmessage").className = 'bad';
-                            return;
+                        //checks if user is logged in
+                        if (window.sessionStorage.getItem("token")){
+                        window.location.replace("admin.html");
+        
                         }
 
-                        document.getElementById("formmessage").innerText = result.message;
-                        document.getElementById("formmessage").className = 'good';
-    
-                        document.getElementById("firstname").value ="";
-                        document.getElementById("lastname").value ="";
-                        document.getElementById("email").value ="";
-                        document.getElementById("username").value ="";
-                        document.getElementById("password").value ="";
-                    }
+                        async function submitform(){
+                            let firstname = document.getElementById("firstname").value;
+                            let lastname = document.getElementById("lastname").value;
+                            let email = document.getElementById("email").value;
+                            let username = document.getElementById("username").value;
+                            let password = document.getElementById("password").value;
+                            
+                        //skickar values får tillbaka result 
+                            let result = await registrerUser(firstname, lastname, email, username, password);
+                            
+                            //om svaret ör ett felmeddelande så blir meddelandet dåligt annars bra
+                            if (result.error) { 
+                                document.getElementById("formmessage").innerText = result.error;
+                                document.getElementById("formmessage").className = 'bad';
+                                return;
+                            }
 
-                </script>
+                            document.getElementById("formmessage").innerText = result.message;
+                            document.getElementById("formmessage").className = 'good';
+        
+                            document.getElementById("firstname").value ="";
+                            document.getElementById("lastname").value ="";
+                            document.getElementById("email").value ="";
+                            document.getElementById("username").value ="";
+                            document.getElementById("password").value ="";
+                        }
+
+                    </script>
+                </div>
             </main>
-        </div>
+
+
+        <footer>
+            <div class="container">
+                <div class="flexbox center">
+                    <img src="/images/logo-dark.svg" alt="Mariano Logo" class="logo" />
+                    <div class="flex"></div>
+                    <a href="tel:0123456789"><img src="/images/icons/telephone.svg" alt="Telephone icon" class="icon" />0123-456789</a>
+                    <a href="http://www.facebook.com/"><img src="/images/icons/facebook.svg" alt="Facebook icon" class="icon" /></a>
+                    <a href="http://www.instagram.com/"><img src="/images/icons/instagram.svg" alt="Instagram icon" class="icon" /></a>
+                </div>
+            </div>
+        </footer>
+
     </body>
 </html>

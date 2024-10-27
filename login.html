@@ -9,21 +9,21 @@
     </head>
 
     <body>
-        <div id="cont">
-            <header>
-                <nav>
-                    <ul>
-                        <li><a href="index.html">Home</a></li>
+        <header>
+            <div class="container">
+                <nav class="mainnav">
+                    <ul class="navul">
+                        <li class="activenav"><a href="index.html">Home</a></li>
                         <li><a href="about.html">About</a></li>
-                        <li class="active"><a href="login.html">Login</a></li>
+                        <li class="spacer"></li>
+                        <li><a href="login.html" class="active">Login</a></li>
                     </ul>
                 </nav>
-            </header>
-            <main id="login">
+            </div>
+        </header>
+        <main id="login">
+            <div class="container">
                 <h1>Login</h1>
-                <div id="formmessage">
-                    
-                </div>
                 
                 <form id="loginform" method="post">
             
@@ -33,16 +33,19 @@
                     <label for="password">Password:</label><br>
                     <input value="" type="text" id="password" name="password"><br>
 
+                    <div id="formmessage">
+                    
+                    </div>
                     <input class="" type="button" onclick="submitform()" value="Login">
                 </form>
 
-                <p>Registrer for a new account <a href="registrer.html">HERE</a></p>
-                <script type="text/javascript">
+                <p>Registrer for a new account <a href="registrer.html" class="button flat">HERE</a></p>
+                <script>
                     async function submitform(){
                         let username = document.getElementById("username").value;
                         let password = document.getElementById("password").value;
                         
-                       //skickar values får tillbaka result 
+                        //skickar values får tillbaka result 
                         let result = await loginUser(username, password);
                         
                         //om svaret ör ett felmeddelande så blir meddelandet dåligt annars bra
@@ -60,7 +63,20 @@
                     }
 
                 </script>
-            </main>
-        </div>
+            </div>
+        </main>
+
+        <footer>
+            <div class="container">
+                <div class="flexbox center">
+                    <img src="/images/logo-dark.svg" alt="Mariano Logo" class="logo" />
+                    <div class="flex"></div>
+                    <a href="tel:0123456789"><img src="/images/icons/telephone.svg" alt="Telephone icon" class="icon" />0123-456789</a>
+                    <a href="http://www.facebook.com/"><img src="/images/icons/facebook.svg" alt="Facebook icon" class="icon" /></a>
+                    <a href="http://www.instagram.com/"><img src="/images/icons/instagram.svg" alt="Instagram icon" class="icon" /></a>
+                </div>
+            </div>
+        </footer>
+
     </body>
 </html>

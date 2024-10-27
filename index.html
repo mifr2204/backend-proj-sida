@@ -9,18 +9,26 @@
     </head>
 
     <body>
-        <header>
-            <nav class="mainnav">
-                <ul class="navul">
-                    <li class="activenav"><a href="index.html">Home</a></li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="login.html">Login</a></li>
-                </ul>
-            </nav>
-        </header>
+
+        <div id="hero">
+            <h1 class="hidden">Pizzeria Mariano</h1>
+            <header>
+                <div class="container">
+                    <nav class="mainnav">
+                        <ul class="navul">
+                            <li class="activenav"><a href="index.html" class="active">Home</a></li>
+                            <li><a href="about.html">About</a></li>
+                            <li class="spacer"></li>
+                            <li><a href="login.html">Login</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </header>
+    
+        </div>
 
             <main id="index">
-                <h1>Pizzeria Mariano</h1>
+                <div class="container">
 
                 <div class="menucont">
 
@@ -38,7 +46,7 @@
                 </div>
                 <p id="Mlist">
                 </p>
-                <script type="text/javascript">
+                <script>
                     
                         changeMenu('pizza');
 
@@ -68,6 +76,7 @@
                         }
                     };
                     
+
                     //checks if user is logged in and redirects
                     if (window.sessionStorage.getItem("token")){
                         window.location.replace("admin.html");
@@ -75,9 +84,21 @@
                     
                 
                 </script>
-                
+                </div>
             </main>
-        </div>
+
+
+            <footer>
+                <div class="container">
+                    <div class="flexbox center">
+                        <img src="/images/logo-dark.svg" alt="Mariano Logo" class="logo" />
+                        <div class="flex"></div>
+                        <a href="tel:0123456789"><img src="/images/icons/telephone.svg" alt="Telephone icon" class="icon" />0123-456789</a>
+                        <a href="http://www.facebook.com/"><img src="/images/icons/facebook.svg" alt="Facebook icon" class="icon" /></a>
+                        <a href="http://www.instagram.com/"><img src="/images/icons/instagram.svg" alt="Instagram icon" class="icon" /></a>
+                    </div>
+                </div>
+            </footer>
         
     </body>
 </html>

@@ -8,35 +8,37 @@
     </head>
 
     <body>
-        <div id="cont">
-            <header>
-                <nav>
-                    <ul id="navul">
-                        <li><a href="index.html">Home</a></li>
-                        <li class="active"><a href="about.html">About</a></li>
+        <header>
+            <div class="container">
+                <nav class="mainnav">
+                    <ul class="navul">
+                        <li class="activenav"><a href="index.html">Home</a></li>
+                        <li><a href="about.html" class="active">About</a></li>
+                        <li class="spacer"></li>
+                        <li><a href="login.html">Login</a></li>
+                    </ul>
                 </nav>
-            </header>
-            <main id="index">
+            </div>
+        </header>
+        <main id="index">
+
+            <section class="container">
                 
-                <h1>Om</h1>
-                
-                <h2>Webbplatsens syfte och upplägg</h2>
-                
-                <p> 
-                    Jag ska med denna webbplatsen visa en webbplats och en webbtjänst. Webbplatsen ska kommunisera med webbtjänsten via Fetch API.
-                    <br>
-                    På index sidan finns alla arbetsplatser listade. Där kan man radera och ändra arbetsplatser. Väljer man att ändra skickas man till en sida där arbetsplatsens information är inlagd i förväg. 
-                    <br>
-                    På sidan som heter new kan man lägga till nya arbetsplatser
-                    <br> 
-                    Både sidan för att ändra och för att skapa ny arbetsplats får man varning om man inte fyller i informationen korrekt 
-                </p>
-                
-                <h2>Uppgiften och jag</h2>
+                <h1>Pizzeria Mariano</h1>
                 
                 <p>
-                    Jag har använt mig av sqlite3 för att skapa databasen. Jag tycker denna var väldigt lik 1a uppgiften men gick mer in på djupet och jag lärde mig en hel del 
+                    Vi är en liten familjedriven pizzeria mitt i centrum i Åsdalen. 
+                    Vårat mål är att vara en mötespunkt för lokalborna samtidigt som vi erbjuder dom pizzor gjorda på lokala råvaror. 
+                    I framtiden hoppas vi kunna erbjuda utkörning och beställning online. 
                 </p>       
+                <p>
+                    Mariano startades 2000 av Giano som tyvärr inte finns med oss längre men som lever vidare här hos oss och våra kunder. 
+                </p>
+
+
+            </section>
+
+
                 <script>
                        //checks if user is logged in
                        if (window.sessionStorage.getItem("token")){
@@ -56,7 +58,26 @@
                     }
                 </script>
 
-            </main>
-        </div>
-    </body>
+<div class="illustration">
+    <div class="container">
+        <img src="/images/illustration.webp" alt="Illustration of a pizzeria" />
+    </div>
+</div>
+
+</main>
+
+
+
+        <footer>
+            <div class="container">
+                <div class="flexbox center">
+                    <img src="/images/logo-dark.svg" alt="Mariano Logo" class="logo" />
+                    <div class="flex"></div>
+                    <a href="tel:0123456789"><img src="/images/icons/telephone.svg" alt="Telephone icon" class="icon" />0123-456789</a>
+                    <a href="http://www.facebook.com/"><img src="/images/icons/facebook.svg" alt="Facebook icon" class="icon" /></a>
+                    <a href="http://www.instagram.com/"><img src="/images/icons/instagram.svg" alt="Instagram icon" class="icon" /></a>
+                </div>
+            </div>
+        </footer>
+</body>
 </html>
